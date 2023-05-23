@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <script src="/script.js"></script> -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>index</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        function setThemeClass() {
+            document.documentElement.className = Telegram.WebApp.colorScheme;
+        }
+        Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+        setThemeClass();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: aliceblue;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background-color: aqua;
+            width: 30%;
+            height: 800px;
+            padding: 30px;
+            /* margin: 50px 0; */
+        }
+        
+        p {
+            word-wrap: break-word;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="verplat"><pre id="pre"><code id="webview_data"></code></pre></div> -->
+
+        <!-- <div class="de"> -->
+
+
+
+        <p>Test:&nbsp;&nbsp;&nbsp;<span id="test"></span></p>
+        <p>Telegram Name:&nbsp;&nbsp;&nbsp;<span id="tname"></span></p>
+        <p>Telegram ID:&nbsp;&nbsp;&nbsp;<span id="tnameid"></span></p>
+        <p>Version:&nbsp;&nbsp;&nbsp;<span id="version"></span></p>
+        <p>Platform: &nbsp;&nbsp;&nbsp;<span id="platform"></span></p>
+
+
+        <!-- </div> -->
+
+
+
+        <!-- <div class="hint"> -->
+        <!-- Version: <span id="ver"></span> -->
+        <!-- <br> Platform: <span id="platform"></span> -->
+        <!-- </div> -->
+        <!-- <br> -->
+        <!-- <br> -->
+        <!-- <div class="detail"> -->
+        <!--  -->
+        <!-- </div> -->
+    </div>
+
+
+    <script>
+        const test = document.getElementById("test");
+        const tname = document.getElementById("tname");
+        const tnameid = document.getElementById("tnameid");
+        const version = document.getElementById("version");
+        const platform = document.getElementById("platform");
+        Telegram.WebApp.ready();
+
+        test.innerHTML = `${JSON.stringify(Telegram.WebApp)}`;
+        version.innerHTML = `${JSON.stringify(Telegram.WebApp.version)}`;
+        platform.innerHTML = `${JSON.stringify(Telegram.WebApp.platform)}`;
+
+        const {
+            first_name,
+            last_name,
+            username,
+            photo_url
+        } = Telegram.WebApp.initDataUnsafe.user;
+
+        tname.innerHTML = `${first_name}${last_name}`;
+        tnameid.innerHTML = username;
+    </script>
+
+
+    <!-- <script type="application/javascript"> -->
+    <!-- const DemoApp = { -->
+    <!-- initDataUnsafe: Telegram.WebApp.initDataUnsafe || {}, -->
+    <!-- } -->
+    <!-- const DemoAppInitData = { -->
+    <!-- init() { -->
+    <!-- document.getElementById('webview_data').innerHTML = JSON.stringify(DemoApp.initDataUnsafe[username], null, 2); -->
+    <!-- //document.getElementById('webview_data''user''username').value; -->
+    <!-- } -->
+    <!-- } -->
+    <!-- </script> -->
+
+    <!-- <script type="application/javascript"> -->
+    <!-- //if(DemoApp.initDataUnsafe.query_id){} -->
+    <!-- document.getElementById('webview_data').innerHTML = JSON.stringify(DemoApp.initDataUnsafe[username], null, 2); -->
+    <!-- document.getElementById('platform').innerHTML = Telegram.WebApp.platform; -->
+    <!-- document.getElementById('ver').innerHTML = Telegram.WebApp.version; -->
+    <!-- </script> -->
+    <!--      -->
+
+</body>
+
+</html>
